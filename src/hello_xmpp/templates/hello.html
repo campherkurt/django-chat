@@ -9,7 +9,9 @@
     <script src='/static/js/strophejs-1.0.2/plugins/strophe.flxhr.js'></script>
     <script src='/static/js/flXHR-1.0.6/flensed-1.0/deploy/flXHR.js'></script>
     <link rel='stylesheet' href='/static/css/hello.css'>
+    <script src='/static/js/hello_object.js'></script>
     <script src='/static/js/hello.js'></script>
+    
 </head>
 <body>
 
@@ -22,7 +24,7 @@
     <div id="user_contacts" class="hidden">
         <a href="#" id="contacts_link">contacts</a>
         <ul id="contact_list" class="hidden">
-           <li><a href="#" class="user_contact" >kurt.campher@synthasite.com</a></li> 
+          
         </ul>    
     </div>
     <!-- End of contacts-->
@@ -30,15 +32,19 @@
     
     <!--The chat area-->
     <div id="full_chat_area">
-        <div id="user_chat_area">
-            <div id='msg_log' class="msg_log">
-            </div>
-            <form id="chat_form" class="hidden">
-                <input id="chat_input" />
-            </form>
-        </div>    
+         
     </div>
     <!-- End of the chat area-->
+    
+    <!--Currently chatting with-->
+    <div id="current_chats" class="hidden">
+        Currently chatting with... <br/>
+        <ul id="current_list">
+            
+        </ul>
+    </div>
+    <!-- End current chats-->
+    
        
     
     <!-- login dialog -->
