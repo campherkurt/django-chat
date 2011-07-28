@@ -1,0 +1,2 @@
+libs/Django-1.0.2-final.tar.gz
+libs/south-0.6.tar.gz

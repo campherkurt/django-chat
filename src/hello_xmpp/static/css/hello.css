@@ -1,0 +1,24 @@
+body {
+font-family: Helvetica;
+}
+h1 {
+text-align: center;
+}
+.hidden {
+display: none;
+}
+
+#log {
+padding: 10px;
+}
+
+.msg_log {
+    width: 300px;
+    height: 400px;
+    overflow: auto;
+}
+
+#contact_list {
+    z-index: 9;
+    
+}

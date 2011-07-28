@@ -1,0 +1,85 @@
+Exception:
+Traceback (most recent call last):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 482, in main
+    self.run(options, args)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 673, in run
+    for req in parse_requirements(filename, finder=finder, options=options):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 4063, in parse_requirements
+    filename, content = get_file_content(filename, comes_from=comes_from)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 4053, in get_file_content
+    f = open(url)
+IOError: [Errno 2] No such file or directory: '/Users/kurtcampher/Projects/personal/adven_connect/scripts/libs/dependencies.txt'
+------------------------------------------------------------
+/Users/kurtcampher/Projects/personal/adven_connect/build/test/bin/pip run on Sat Jun 25 01:49:22 2011
+Requirement 'libs/boto-trunk-r1595.tgz' looks like a filename, but the file does not exist
+Requirement 'libs/python-dateutil-1.4.1.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/BeautifulSoup-3.0.8.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/Django-1.0.2-final-patched-for-django-changeset-12637.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/django_compressor-7f314c5.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/south-0.6.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/django-piston-r185.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/isodate-0.4.0.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/feedparser-4.1.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/suds-0.3.9.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/pyfo-0.6.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/python-memcached-1.45.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/ordereddict-1.1.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/PythonLibs-0.2.2-r191.tar.gz' looks like a filename, but the file does not exist
+Unpacking ./libs/boto-trunk-r1595.tgz
+Exception:
+Traceback (most recent call last):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 482, in main
+    self.run(options, args)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 675, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2428, in install_files
+    self.unpack_url(url, location, self.is_download)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2503, in unpack_url
+    self.unpack_file(source, location, content_type, link)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2639, in unpack_file
+    or tarfile.is_tarfile(filename)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 2524, in is_tarfile
+    t = open(name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 1644, in open
+    return func(name, "r", fileobj, **kwargs)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 1706, in gzopen
+    fileobj = bltn_open(name, mode + "b")
+IOError: [Errno 2] No such file or directory: '/Users/kurtcampher/Projects/personal/adven_connect/scripts/libs/boto-trunk-r1595.tgz'
+------------------------------------------------------------
+/Users/kurtcampher/Projects/personal/adven_connect/build/test/bin/pip run on Sat Jun 25 01:56:11 2011
+Requirement 'libs/Django-1.0.2-final.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/south-0.6.tar.gz' looks like a filename, but the file does not exist
+Requirement 'libs/ipython-0.10-py2.6.egg' looks like a filename, but the file does not exist
+Unpacking ./libs/Django-1.0.2-final.tar.gz
+Exception:
+Traceback (most recent call last):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 482, in main
+    self.run(options, args)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 675, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2428, in install_files
+    self.unpack_url(url, location, self.is_download)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2503, in unpack_url
+    self.unpack_file(source, location, content_type, link)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 2639, in unpack_file
+    or tarfile.is_tarfile(filename)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 2524, in is_tarfile
+    t = open(name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 1644, in open
+    return func(name, "r", fileobj, **kwargs)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/tarfile.py", line 1706, in gzopen
+    fileobj = bltn_open(name, mode + "b")
+IOError: [Errno 2] No such file or directory: '/Users/kurtcampher/Projects/personal/adven_connect/scripts/libs/Django-1.0.2-final.tar.gz'
+------------------------------------------------------------
+/Users/kurtcampher/Projects/personal/adven_connect/build/test/bin/pip run on Sat Jun 25 01:57:10 2011
+Exception:
+Traceback (most recent call last):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 482, in main
+    self.run(options, args)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 673, in run
+    for req in parse_requirements(filename, finder=finder, options=options):
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 4063, in parse_requirements
+    filename, content = get_file_content(filename, comes_from=comes_from)
+  File "/Users/kurtcampher/Projects/personal/adven_connect/build/test/lib/python2.6/site-packages/pip-0.6-py2.6.egg/pip.py", line 4053, in get_file_content
+    f = open(url)
+IOError: [Errno 2] No such file or directory: '../../libs/dependencies.txt'
