@@ -47,7 +47,7 @@ var Hello = {
         
         $(".user_contact").click(function () {
             var contact = $(this).text();
-            Hello.build_new_chat(contact);
+            ChatBox.build_new_chat(contact);
         });
                 
     },
@@ -77,69 +77,12 @@ var Hello = {
         if ($(msg).children('body').text()) {
             var from_text = $(msg).children('body').text();
             var pretty_contact = from_id.split("@")[0];
-            var formmatted_contact = Hello.format_contact(from_id)
+            var formmatted_contact = Utilities.format_contact(from_id)
             
             Hello.msg_log("<strong>" + pretty_contact + "</strong>: " +from_text, formmatted_contact + "__msg_log"); 
             Hello.log(''); 
         }
         return true;
-    },
-    
-    show_current_chats : function(contact, action) {
-        //Displays all the contacts a user is currently chatting with
-        var formatted_contact = Hello.format_contact(contact);
-        
-        if (action == 'add') {
-            var id =  formatted_contact + "__current";
-            var li = '<li><a href="#" id=' + id + ' class="current_contact" >' + contact + '</a></li>';
-           
-            $('#current_list').append(li);    
-            $("#" + id).click(function() {
-                Hello.build_new_chat($("#" + id).text());
-                return false
-            });
-                       
-            $('#current_chats').removeClass('hidden');
-        }
-    }, 
-    
-    format_contact : function(contact) {
-        //contact id's are also used to determine the contact's div's.
-        //the '@', '.' and "/blahbblah" needs to be removed.
-        return contact.split('/')[0].replace('@', '_').replace(/\./g, '_');
-    },
-    
-    build_new_chat : function(contact) {
-        //Creates a new user log box and input
-        //Does not build if one already exists.
-        //a formatted contact id is used in the div id's.
-        var formatted_contact = Hello.format_contact(contact);
-        $('.user_chat_area').hide(); 
-        if ($('#' + formatted_contact + '__chat_area').attr('id')) {
-            $('#' + formatted_contact + '__chat_area').show();
-            return false;
-        }
-        
-        //Could this be done better? Probably.
-        //TODO: Use better id's for the div's
-        var chat_html = '<div id="' + formatted_contact + '__chat_area" class="user_chat_area"> \
-                            <div id="' + formatted_contact + '__msg_log" class="msg_log"> \
-                            </div> \
-                            <form id="' + formatted_contact + '__chat_form" class="chat_form"> \
-                                <input id="' + formatted_contact + '__chat_input" class="chat_input" /> \
-                                <input type="hidden" value="' + contact + '" /> \
-                             </form> \
-                        </div> ';
-        
-             
-        $('#full_chat_area').append(chat_html);
-        
-        $('.msg_log').scrollTop($('.msg_log').height());
-        
-        //bind the "send message" functionality to the contact form.
-        $('#' + formatted_contact + '__chat_form').submit(Hello.bind_send_message_to_contact_form);
-        Hello.show_current_chats(contact, 'add') ;
-        return false;
     },
     
     bind_send_message_to_contact_form : function() {
@@ -155,6 +98,76 @@ var Hello = {
         Hello.send_msg(text, to);
         Hello.msg_log("<strong>me</strong>:  " + text, formatted_contact+ "__msg_log");
         return false;    
-    }
+    }        
+}
+
+var ChatBox = {
+    contact : null,
+    formatted_contact : null,
+    
+    is_chat_built : function () {
+        if ($('#' + ChatBox.formatted_contact + '__chat_area').attr('id')) {
+            $('#' + ChatBox.formatted_contact + '__chat_area').show();  
+            return true;
+        }
+        return false;
+    },
+    
+    get_chat_html : function () {
+        var chat_html = '<div id="' + ChatBox.formatted_contact + '__chat_area" class="user_chat_area"> \
+                            <div id="' + ChatBox.formatted_contact + '__msg_log" class="msg_log"> \
+                            </div> \
+                            <form id="' + ChatBox.formatted_contact + '__chat_form" class="chat_form"> \
+                                <input id="' + ChatBox.formatted_contact + '__chat_input" class="chat_input" /> \
+                                <input type="hidden" value="' + ChatBox.contact + '" /> \
+                             </form> \
+                        </div> ';
         
+        $('#full_chat_area').append(chat_html);
+        $('.msg_log').scrollTop($('.msg_log').height());
+        //bind the "send message" functionality to the contact form.
+        $('#' + ChatBox.formatted_contact + '__chat_form').submit(Hello.bind_send_message_to_contact_form);
+        
+    },
+    
+    build_new_chat : function (contact) {
+        ChatBox.contact = contact;
+        ChatBox.formatted_contact = Utilities.format_contact(contact);
+        
+        $('.user_chat_area').hide();
+                
+        if (ChatBox.is_chat_built()) {
+            return false;
+        }
+        
+        ChatBox.get_chat_html();
+        ChatBox.show_current_chats('add') ;
+        return false;
+    },
+    
+    show_current_chats : function(action) {
+        //Displays all the contacts a user is currently chatting with
+        if (action == 'add') {
+            var id =  ChatBox.formatted_contact + "__current";
+            var li = '<li><a href="#" id=' + id + ' class="current_contact" >' + ChatBox.contact + '</a></li>';
+           
+            $('#current_list').append(li);    
+            $("#" + id).click(function() {
+                ChatBox.build_new_chat($("#" + id).text());
+                return false
+            });
+                       
+            $('#current_chats').removeClass('hidden');
+        }
+    }, 
+    
+}
+
+var Utilities = {
+    format_contact : function(contact) {
+        //contact id's are also used to determine the contact's div's.
+        //the '@', '.' and "/blahbblah" needs to be removed.
+        return contact.split('/')[0].replace('@', '_').replace(/\./g, '_');
+    },
+    
 }

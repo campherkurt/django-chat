@@ -55,16 +55,11 @@ $(document).bind('connect', function (ev, data) {
 $(document).bind('connected', function () {
     Hello.log('Connection established...');
     
-    //Hello.connection.addHandler(Hello.handle_resp, null, null, null);
     Hello.connection.addHandler(Hello.handle_msg, null, 'message', 'chat');
     Hello.connection.addHandler(Hello.handle_roster, null, null, 'result', 'roster');
-    
-    var domain = Strophe.getDomainFromJid(Hello.connection.jid);
-    
+      
     //Display the contacts list
     $(document).trigger('get_contacts');
-    
-   
 });
 
 $(document).bind('get_contacts', function () {
