@@ -55,6 +55,7 @@ $(document).bind('connect', function (ev, data) {
 $(document).bind('connected', function () {
     Hello.log('Connection established...');
     
+    Hello.connection.addHandler(Hello.handle_resp, null, null, null);
     Hello.connection.addHandler(Hello.handle_msg, null, 'message', 'chat');
     Hello.connection.addHandler(Hello.handle_roster, null, null, 'result', 'roster');
       
@@ -63,7 +64,7 @@ $(document).bind('connected', function () {
 });
 
 $(document).bind('get_contacts', function () {
-   Hello.get_roster(); 
+   Hello.get_roster();
 });
 
 $(document).bind('disconnected', function () {

@@ -31,9 +31,17 @@ var Hello = {
         Hello.connection.send(iq); 
     },
     
+    handle_resp : function (data) {
+        //console.log(data);
+        data;
+    },
+    
     handle_roster : function(data) {
-        Hello.contacts = data.children[0].children;
-        
+        if (data['firstChild']['localName'] != 'query') {
+            Hello.msg_log('Your contacts could not be retrieved. Sorry...')
+        }
+               
+        Hello.contacts = data['firstChild']['childNodes'];
         //Displays the contacts
         for (ix in Hello.contacts) {
             if (Hello.contacts[ix].toString() == "[object Element]") {
