@@ -3,6 +3,7 @@ var Hello = {
     connection : null,
     start_time : null,
     user : null,
+    contacts : null,
         
     log : function (msg) {
         //logs all the network activity
@@ -23,15 +24,37 @@ var Hello = {
         Hello.connection.send(ping);
     } ,
     
-    handle_resp : function(data) {
-        console.log(data);
-           
+    
+    get_roster : function() {
+        var user = Hello.connection.jid;
+        var iq = $iq({type: 'get', id: 'roster'}).c('query', {xmlns: Strophe.NS.ROSTER});
+        Hello.connection.send(iq); 
+    },
+    
+    handle_roster : function(data) {
+        Hello.contacts = data.children[0].children;
+        
+        //Displays the contacts
+        for (ix in Hello.contacts) {
+            if (Hello.contacts[ix].toString() == "[object Element]") {
+                $('#contact_list').append('<li><a href="#" class="user_contact">' + Hello.contacts[ix].getAttribute('jid') + '</a></li>');
+            } 
+        }
+        $('#user_contacts').removeClass('hidden');
+        $('#contacts_link').click(function () {
+            $('#contact_list').slideToggle();    
+        });
+        
+        $(".user_contact").click(function () {
+            var contact = $(this).text();
+            Hello.build_new_chat(contact);
+        });
+                
     },
     
     send_status : function(to) {
         //var presence = $pres({to:to, id:'stat1'}).c('show').t('away').up().c('status').t('Off to rest.');
         var presence = $pres().c('show').t('unavailable');
-        console.log(presence.toString());
         Hello.connection.send(presence);
     },
     
@@ -45,7 +68,6 @@ var Hello = {
     
     handle_status : function(pres) {
         Hello.log("got a status return ");
-        console.log(pres);
         return true;
     },
     
@@ -67,12 +89,18 @@ var Hello = {
         //Displays all the contacts a user is currently chatting with
         var formatted_contact = Hello.format_contact(contact);
         
-        if (action == 'add') { 
-            var li = '<li><a href="#" id="' + formatted_contact + '__current">' + contact + '</a></li>';
+        if (action == 'add') {
+            var id =  formatted_contact + "__current";
+            var li = '<li><a href="#" id=' + id + ' class="current_contact" >' + contact + '</a></li>';
+           
             $('#current_list').append(li);    
-            $('#current_chats').removeClass('hidden'); 
+            $("#" + id).click(function() {
+                Hello.build_new_chat($("#" + id).text());
+                return false
+            });
+                       
+            $('#current_chats').removeClass('hidden');
         }
-        
     }, 
     
     format_contact : function(contact) {
@@ -86,7 +114,9 @@ var Hello = {
         //Does not build if one already exists.
         //a formatted contact id is used in the div id's.
         var formatted_contact = Hello.format_contact(contact);
+        $('.user_chat_area').hide(); 
         if ($('#' + formatted_contact + '__chat_area').attr('id')) {
+            $('#' + formatted_contact + '__chat_area').show();
             return false;
         }
         
@@ -100,7 +130,8 @@ var Hello = {
                                 <input type="hidden" value="' + contact + '" /> \
                              </form> \
                         </div> ';
-              
+        
+             
         $('#full_chat_area').append(chat_html);
         
         $('.msg_log').scrollTop($('.msg_log').height());

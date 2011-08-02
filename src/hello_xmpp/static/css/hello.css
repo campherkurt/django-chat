@@ -18,6 +18,7 @@ padding: 10px;
     top: 200px;
     width: 200px;
     height: 320px;
+    z-index: 5;
 }
 
 .msg_log {
@@ -27,8 +28,11 @@ padding: 10px;
     white-space: normal;
 }
 
-#contact_list {
-    z-index: 9;
+#user_contacts {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    z-index: 10;
 }
 
 .new {
